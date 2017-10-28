@@ -24,12 +24,9 @@ import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
 
-
-
 public class WebScraper {
 	
 	static String mainPageUrl = "https://www.nps.gov/nagpra/FED_NOTICES/NAGPRADIR/index.html";
-	
 	
 	public class UrlObject {
 		String date  = null;
@@ -37,7 +34,6 @@ public class WebScraper {
 		String title = null;
 		String state = null;
 	}
-	
 	
 	private UrlObject[] getMainPageSourceFromFile(String filePath) throws IOException{
 		
@@ -47,7 +43,6 @@ public class WebScraper {
 		int lineNumber = 0;
 		
 		try {
-
 			BufferedReader newBufferdReader = new BufferedReader(new FileReader(filePath));
 			StringBuilder newStringReader = new StringBuilder();
 			String line = newBufferdReader.readLine();
@@ -80,7 +75,6 @@ public class WebScraper {
 				boolean match_articals = line.contains("https://www.federalregister.gov/articles/");
 				boolean match_special = line.contains("<td width=\"136\">");
 				
-	        	
 				//We found a link!
 				if((match_d == true) || (match_a == true) || (match_articals == true)) {
 					
@@ -174,7 +168,6 @@ public class WebScraper {
 						mainObject[linkNumber] = linkObject;
 						linkNumber++;
 					}
-
 				}
 				else {
 					//No match do nothing
@@ -192,7 +185,6 @@ public class WebScraper {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		//Return Object
 		return mainObject;
 	}
@@ -242,7 +234,6 @@ public class WebScraper {
 				boolean match_articals = inputLine.contains("https://www.federalregister.gov/articles/");
 				boolean match_special = inputLine.contains("<td width=\"677\">");
 				
-	        	
 				//We found a link!
 				if((match_d == true) || (match_a == true)) {
 					
@@ -304,18 +295,14 @@ public class WebScraper {
 				else {
 					//No match do nothing
 				}
-				
-				
 	        	//sb.append(inputLine);
 	        }
 	        in.close();
-		
 		return mainObject;
 	}
 	
 	public UrlObject findAndAssignState( UrlObject inputUrlObj) {
 		
-
 		//Build a temp object
 		UrlObject myObj = new UrlObject();
 		
@@ -383,10 +370,10 @@ public class WebScraper {
 		boolean followersNext = false;
 		boolean postsNext     = false;
 
-        URL url = new URL(sURL);
-        URLConnection urlCon = url.openConnection();
-        urlCon.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11");
-        BufferedReader in = null;
+       		URL url = new URL(sURL);
+	        URLConnection urlCon = url.openConnection();
+       		urlCon.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11");
+        	BufferedReader in = null;
 
         if (urlCon.getHeaderField("Content-Encoding") != null
                 && urlCon.getHeaderField("Content-Encoding").equals("gzip")) {
@@ -574,20 +561,12 @@ public class WebScraper {
 	}
 	
 	public static void main(String[] args) {
-		
-		
-		
-	
-		try {
-			
-		
-			SimpleDateFormat dateFormatTest = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a");
 
+		try {
+			SimpleDateFormat dateFormatTest = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a");
 			Date postDateObj = dateFormatTest.parse("09/28/2017 09:46:36 AM");
 			DateTime postDate = new DateTime(postDateObj);
-			
 			DateTime currentDate = new DateTime();
-			
 			currentDate = currentDate.minusHours(36);
 			
 			boolean myTestAfter = postDate.isAfter(currentDate);
@@ -600,9 +579,7 @@ public class WebScraper {
 			// TODO Auto-generated catch block
 			e2.printStackTrace();
 		}
-		
-		
-		
+
 		////////////////////////////////////////////////////////////////////////////////
 		
 		System.out.println("Lets get some LIIINKS");
@@ -620,8 +597,7 @@ public class WebScraper {
 
 		//////////////////////////////////////////////////////////////////////////////
 		/// Setup the output window
-		
-		
+
 		final JFrame theFrame = new JFrame();
         theFrame.setTitle("Trick Or Treat!");
         theFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -645,7 +621,6 @@ public class WebScraper {
         theFrame.getContentPane().add(mainPanel);
         theFrame.pack();
         theFrame.setVisible(true);
-        
 		///
 		/////////////////////////////////////////////////////////////////////////////
 		
@@ -676,17 +651,14 @@ public class WebScraper {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		
 		//Print the data
 		printMainPageInfo(urlList);
-		
 		theText.append(" Ok Cash Gotten! \n");
 		//System.out.println("Ok Cash Gotten!");
-		
 		//Exit Java
 		System.exit(0);
 	}
-
 }
 
 
